@@ -8,5 +8,5 @@ class DefaultIO {
   virtual ~DefaultIO() {
   }
   virtual std::string read();
-  virtual void write(std:: string);
+  virtual void write(std:: string msg);
 };
