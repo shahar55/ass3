@@ -1,6 +1,7 @@
 #include "knnGenerate.hpp"
 #include "classifiedFlower.hpp"
 #include "unclassifiedFlower.hpp"
+#include <string.h>
 #include <queue>
 
 void KNNGenerate::fillDistances(std::vector<ClassifiedFlower>& v,UnclassifiedFlower& c) {
@@ -9,7 +10,7 @@ void KNNGenerate::fillDistances(std::vector<ClassifiedFlower>& v,UnclassifiedFlo
     }
 }
 
-std::vector<ClassifiedFlower> KNNGenerate::kthClosest(UnclassifiedFlower& f,std::vector<ClassifiedFlower>& v,int k) {
+std::vector<ClassifiedFlower> KNNGenerate::kthClosest(UnclassifiedFlower& f,std::vector<ClassifiedFlower>& v) {
     fillDistances(v,f);
     std::priority_queue<ClassifiedFlower, std::vector<ClassifiedFlower>,std::greater<ClassifiedFlower>> pq(v.begin(), v.end());
     std::vector<ClassifiedFlower> kth;
@@ -19,4 +20,15 @@ std::vector<ClassifiedFlower> KNNGenerate::kthClosest(UnclassifiedFlower& f,std:
         pq.pop();
     }
     return kth;
+}
+
+KNNGenerate::KNNGenerate(int k,std::string distanceMetric):k(k),distanceMetric(distanceMetric) {
+}
+
+void KNNGenerate::changeK(int k) {
+    this->k=k;
+}
+
+void KNNGenerate::changeDistanceMetric(std::string distanceMetric) {
+    this->distanceMetric=distanceMetric;
 }

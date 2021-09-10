@@ -84,7 +84,7 @@ void TCPServer::handle() {
      * for loop that find for each unFlower his type according to knn algorithem.
      * **/
     for (UnclassifiedFlower u:c2) {
-        std::vector<ClassifiedFlower> l = k.kthClosest(u,c1,5);
+        std::vector<ClassifiedFlower> l = k.kthClosest(u,c1);
         std::string type = findFlowerName(l);
         types.push_back(type);
     }
