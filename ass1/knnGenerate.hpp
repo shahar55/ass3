@@ -24,4 +24,5 @@ class KNNGenerate{
         void fillDistances(std::vector<ClassifiedFlower>& v,UnclassifiedFlower& c);
         void changeK(int k);
         void changeDistanceMetric(std::string distanceMetric);
+        std::string getParameters();
 };

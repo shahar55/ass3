@@ -9,6 +9,6 @@ class Command {
     std::string description;
     DefaultIO dio;
  public:
-  virtual ~Command();
+  //virtual ~Command();
   virtual void execute()=0;
 };

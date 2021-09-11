@@ -32,3 +32,7 @@ void KNNGenerate::changeK(int k) {
 void KNNGenerate::changeDistanceMetric(std::string distanceMetric) {
     this->distanceMetric=distanceMetric;
 }
+
+std::string KNNGenerate::getParameters() {
+    return "K = "+std::to_string(k)+", distance metric = "+distanceMetric;
+}

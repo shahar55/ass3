@@ -9,9 +9,8 @@ UploadCommand::UploadCommand(){
 }
 
 void UploadCommand::execute(){
-    cout<<"Please upload your local train CSV file.\n";
-    string filePath;
-    cin >> filePath;
+    dio.write("Please upload your local train CSV file.");
+    string filePath = dio.read();
     dio.write(filePath);
-    cout<<"Upload complete.";
+    dio.write("Upload complete.");
 }
