@@ -4,3 +4,5 @@
 std::string Command::getDescription() {
     return description;
 }
+
+Command::Command(DefaultIO* dio):dio(dio){}

@@ -5,10 +5,8 @@
 
 using namespace std;
 
-UploadCommand::UploadCommand(){
+UploadCommand::UploadCommand(DefaultIO* dio):Command(dio){
     description="upload an unclassified csv data file";
-    StandartIO k;
-    dio = &k;
 }
 
 void UploadCommand::execute(){

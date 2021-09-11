@@ -10,6 +10,6 @@ class AlgorithmSettingsCommand : public Command {
         KNNGenerate& gen;
         void changeParams(vector<string> newParams);
     public:
-        AlgorithmSettingsCommand(KNNGenerate& gen);
+        AlgorithmSettingsCommand(DefaultIO* dio, KNNGenerate& gen);
         virtual void execute();
 };

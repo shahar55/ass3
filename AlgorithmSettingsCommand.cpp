@@ -6,10 +6,8 @@
 #include <vector>
 using namespace std;
 
-AlgorithmSettingsCommand::AlgorithmSettingsCommand(KNNGenerate& gen):gen(gen){
+AlgorithmSettingsCommand::AlgorithmSettingsCommand(DefaultIO* dio,KNNGenerate& gen):Command(dio),gen(gen){
     description="algorithm settings";
-    StandartIO i;
-    dio = &i;
 }
 
 void AlgorithmSettingsCommand::execute(){

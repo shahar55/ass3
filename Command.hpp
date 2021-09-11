@@ -9,7 +9,8 @@ class Command {
     std::string description;
     DefaultIO* dio;
  public:
-  //virtual ~Command();
-  virtual void execute()=0;
+   Command(DefaultIO* dio);
+   virtual ~Command() = default;
+   virtual void execute()=0;
    std::string getDescription();
 };

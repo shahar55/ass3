@@ -73,7 +73,9 @@ void CSVHandler::testToUnclassified(std::string testPath) {
             unclassified+=cell;
             unclassified+=",";
         }
+        unclassified.pop_back();
         unclassified+="\n";
     }
+    unclassified.pop_back();
     writeCSV("../resources/Unclassified.csv",unclassified);
 }

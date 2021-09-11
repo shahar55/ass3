@@ -3,24 +3,32 @@
 #include "Command.hpp"
 #include "AlgorithmSettingsCommand.hpp"
 #include "UploadCommand.hpp"
+#include "StandartIO.hpp"
 #include <vector>
+#include <memory>
 
-void printMenu(vector<Command*> commands) {
+void printMenu(std::vector<Command*> commands) {
     std::cout<<"Welcome to the KNN Classifier Server. Please choose an option:\n";
     int i=1;
     for (Command* c : commands) {
-        cout<<i<<". "<<c->getDescription()<<"\n";
+        std::cout<<i<<". "<<c->getDescription()<<"\n";
         i++;
     }
 }
+
 int main() {
-    KNNGenerate k;
+    KNNGenerate k(5,"MAN");
+    StandartIO s;
+    UploadCommand u(&s);
+    AlgorithmSettingsCommand a(&s,k);
     vector<Command*> commands;
-    UploadCommand u;
-    /*AlgorithmSettingsCommand a(k);
     commands.push_back(&u);
     commands.push_back(&a);
     printMenu(commands);
-    u.execute();*/
-    u.execute();
+    commands[0]->execute();
+    commands[1]->execute();
+    commands[1]->execute();
+    commands[0]->execute();
+    commands[1]->execute();
+    return 0;
 }
