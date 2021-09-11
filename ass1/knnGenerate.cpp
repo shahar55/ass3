@@ -15,7 +15,8 @@ std::vector<ClassifiedFlower> KNNGenerate::kthClosest(UnclassifiedFlower& f,std:
     std::priority_queue<ClassifiedFlower, std::vector<ClassifiedFlower>,std::greater<ClassifiedFlower>> pq(v.begin(), v.end());
     std::vector<ClassifiedFlower> kth;
     // do for remaining array elements
-    while (--k+1) {
+    int tmpK=k;
+    while (--tmpK+1) {
         kth.push_back(pq.top());
         pq.pop();
     }

@@ -5,11 +5,8 @@
 #include <string.h>
 using namespace std;
 
-class ClassifyCommand : public Command {
-    private:
-        KNNGenerate& gen;
-        void classify();
+class DisplayResCommand : public Command {
     public:
-        ClassifyCommand(DefaultIO* dio, KNNGenerate& gen);
+        DisplayResCommand(DefaultIO*);
         virtual void execute();
 };

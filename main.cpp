@@ -3,6 +3,9 @@
 #include "Command.hpp"
 #include "AlgorithmSettingsCommand.hpp"
 #include "UploadCommand.hpp"
+#include "displayResCommand.hpp"
+#include "downloadResCommand.hpp"
+#include "ClassifyCommand.hpp"
 #include "StandartIO.hpp"
 #include <vector>
 #include <memory>
@@ -21,14 +24,16 @@ int main() {
     StandartIO s;
     UploadCommand u(&s);
     AlgorithmSettingsCommand a(&s,k);
+    ClassifyCommand c(&s,k);
+    DisplayResCommand d(&s);
+    DownloadResCommand download(&s);
     vector<Command*> commands;
     commands.push_back(&u);
     commands.push_back(&a);
+    commands.push_back(&c);
+    commands.push_back(&d);
+    commands.push_back(&download);
     printMenu(commands);
-    commands[0]->execute();
-    commands[1]->execute();
-    commands[1]->execute();
-    commands[0]->execute();
-    commands[1]->execute();
+    commands[4]->execute();
     return 0;
 }
