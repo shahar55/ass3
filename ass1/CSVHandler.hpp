@@ -31,4 +31,6 @@ class CSVHandler {
 
         // write string to csv
         void writeCSV(std::string, std::string);
+
+        void testToUnclassified(std::string testPath);
 };

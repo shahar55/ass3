@@ -61,3 +61,19 @@ void CSVHandler::writeCSV(std::string fileName, std::string s) {
 
 CSVHandler::CSVHandler() {
 }
+
+void CSVHandler::testToUnclassified(std::string testPath) {
+    std::vector<std::vector<std::string>> testData = readCSV(testPath.c_str());
+    for (std::vector<std::string>& row : testData) {
+        row.pop_back();
+    }
+    std::string unclassified="";
+    for (std::vector<std::string> row : testData) {
+        for (std::string cell:row) {
+            unclassified+=cell;
+            unclassified+=",";
+        }
+        unclassified+="\n";
+    }
+    writeCSV("../resources/Unclassified.csv",unclassified);
+}

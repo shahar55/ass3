@@ -7,8 +7,9 @@
 class Command {
  protected:
     std::string description;
-    DefaultIO dio;
+    DefaultIO* dio;
  public:
   //virtual ~Command();
   virtual void execute()=0;
+   std::string getDescription();
 };

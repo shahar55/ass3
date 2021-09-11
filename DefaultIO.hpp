@@ -5,8 +5,7 @@
  */
 class DefaultIO {
  public:
-  virtual ~DefaultIO() {
-  }
-  virtual std::string read();
-  virtual void write(std:: string msg);
+  virtual std::string read()=0;
+  virtual std::string readData()=0;
+  virtual void write(std:: string msg)=0;
 };

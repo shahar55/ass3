@@ -8,14 +8,15 @@ using namespace std;
 
 AlgorithmSettingsCommand::AlgorithmSettingsCommand(KNNGenerate& gen):gen(gen){
     description="algorithm settings";
-    dio = StandartIO();
+    StandartIO i;
+    dio = &i;
 }
 
 void AlgorithmSettingsCommand::execute(){
-    dio.write("The current KNN parameters are: "+gen.getParameters());
+    dio->write("The current KNN parameters are: "+gen.getParameters());
     string arg;
     vector<string> args;
-    string newArgs = dio.read();
+    string newArgs = dio->read();
     istringstream split(newArgs);
     while (getline(split,arg,' ')) {
         args.push_back(arg);
@@ -28,15 +29,15 @@ void AlgorithmSettingsCommand::changeParams(vector<string> params) {
         return;
     if (params.size()!=2)
     {
-        dio.write("Invalid amount of parameters");
+        dio->write("Invalid amount of parameters");
         return;
     }
     if (atoi(params[0].c_str())<1) {
-        dio.write("Invalid value for K");
+        dio->write("Invalid value for K");
         return;
     }
     if (params[1]!="EUC" && params[1]!="MAN" && params[1]!="CHE") {
-        dio.write("Invalid value for distance metric");
+        dio->write("Invalid value for distance metric");
         return;
     }
     gen.changeK(atoi(params[0].c_str()));
