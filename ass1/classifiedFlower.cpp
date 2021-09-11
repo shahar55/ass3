@@ -1,7 +1,7 @@
 #include "classifiedFlower.hpp"
 #include <string>
-ClassifiedFlower::ClassifiedFlower(double cupLeafWidth,double cupLeafLength,double petalWidth,double petalLength, char const* type)
-:Flower(cupLeafWidth, cupLeafLength, petalWidth, petalLength){
+ClassifiedFlower::ClassifiedFlower(std::vector<double> sizes, char const* type)
+:Flower(sizes){
     name = type;
 }
 std::string ClassifiedFlower::getName() const{

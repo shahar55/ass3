@@ -14,7 +14,7 @@ class ClassifiedFlower:public Flower{
     public:
     
         // constructor.
-        ClassifiedFlower(double cupLeafWidth,double cupLeafLength,double petalWidth,double petalLength, char const* type);
+        ClassifiedFlower(std::vector<double> sizes, char const* type);
         
         // get name
         std::string getName() const;

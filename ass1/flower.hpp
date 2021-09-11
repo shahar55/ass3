@@ -1,3 +1,5 @@
+#include <string>
+#include <vector>
 /* 
  * class flower.
  *
@@ -7,14 +9,13 @@
 #pragma once
 class Flower{
     protected:
-        double cupLeafWidth;
-        double cupLeafLength;
-        double petalWidth;
-        double petalLength;
+        std::vector<double> sizes;
     
     public:
         // constructor.
-        Flower(double cupLeafWidth,double cupLeafLength,double petalWidth,double petalLength);
+        Flower(std::vector<double> sizes);
         // compute and returns the Euclidean Distance between this flower and other  one.
         double getEuclideanDistance(const Flower& other) const;
+        double getMANDistance(const Flower& other) const;
+        double getCHEDistance(const Flower& other) const;
 };

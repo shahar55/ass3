@@ -15,5 +15,5 @@ class UnclassifiedFlower:public Flower{
     * constructor.
     */
     public:
-        UnclassifiedFlower(double cupLeafWidth,double cupLeafLength,double petalWidth,double petalLength); // constructor
+        UnclassifiedFlower(std:: vector<double> sizes); // constructor
 };
