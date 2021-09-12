@@ -5,8 +5,8 @@ include(CTest)
 enable_testing()
 
 file(GLOB ass1_SRC ass1/*.cpp)
-add_executable(run main.cpp Command.cpp ClassifyCommand.cpp StandartIO.cpp UploadCommand.cpp 
-                AlgorithmSettingsCommand.cpp displayResCommand.cpp downloadResCommand.cpp ${ass1_SRC})
+add_executable(run main.cpp Command.cpp ClassifyCommand.cpp StandartIO.cpp UploadCommand.cpp confusionMatrixCommand.cpp
+                AlgorithmSettingsCommand.cpp displayResCommand.cpp downloadResCommand.cpp exitCommand.cpp ${ass1_SRC})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

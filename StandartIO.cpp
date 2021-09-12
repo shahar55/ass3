@@ -20,3 +20,7 @@ std::string StandartIO::readData() {
     CSVHandler handler;
     return handler.readCSVToString(filePath.c_str());
 }
+
+void StandartIO::close(){
+    exit(1);
+}

@@ -14,7 +14,7 @@ class CSVHandler {
 
         // private: spilt line according to "," char.
         std::vector<std::string> splitLine(std::string line);
-    
+        const std:: vector<std::string> findClassName(std :: vector<std:: string> data);
     public:
 
         // constructor.
@@ -33,4 +33,6 @@ class CSVHandler {
         void writeCSV(std::string, std::string);
 
         void testToUnclassified(std::string testPath);
+        std:: vector<std::string> findClassesWithoutDuplicates(char const* fileName);
+        std:: vector<std::string> findClasses(char const* fileName);
 };

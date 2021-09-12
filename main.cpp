@@ -5,7 +5,9 @@
 #include "UploadCommand.hpp"
 #include "displayResCommand.hpp"
 #include "downloadResCommand.hpp"
+#include "exitCommand.hpp"
 #include "ClassifyCommand.hpp"
+#include "confusionMatrixCommand.hpp"
 #include "StandartIO.hpp"
 #include <vector>
 #include <memory>
@@ -27,13 +29,17 @@ int main() {
     ClassifyCommand c(&s,k);
     DisplayResCommand d(&s);
     DownloadResCommand download(&s);
+    ConfusionMatrixCommand cm(&s);
+    ExitCommand e(&s);
     vector<Command*> commands;
     commands.push_back(&u);
     commands.push_back(&a);
     commands.push_back(&c);
     commands.push_back(&d);
     commands.push_back(&download);
+    commands.push_back(&cm);
+    commands.push_back(&e);
     printMenu(commands);
-    commands[4]->execute();
+    commands[5]->execute();
     return 0;
 }

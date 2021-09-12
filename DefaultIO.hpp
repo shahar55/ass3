@@ -8,4 +8,5 @@ class DefaultIO {
   virtual std::string read()=0;
   virtual std::string readData()=0;
   virtual void write(std:: string msg)=0;
+  virtual void close()=0;
 };
