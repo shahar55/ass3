@@ -97,6 +97,7 @@ const std:: vector<std::string> CSVHandler::findClassName(std :: vector<std::str
         }
         if (!flag) {
             dataString.push_back(data[i]);
+            std::cout<<i<< " ";
         }
         flag = false;
     }
