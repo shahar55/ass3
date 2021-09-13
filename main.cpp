@@ -39,7 +39,7 @@ int main() {
     commands.push_back(&download);
     commands.push_back(&cm);
     commands.push_back(&e);
-    printMenu(commands);
+    //printMenu(commands);
     commands[5]->execute();
     return 0;
 }

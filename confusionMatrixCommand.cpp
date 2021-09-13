@@ -71,13 +71,14 @@ string ConfusionMatrixCommand::confusionMatrixToString(vector<vector<int>>& matr
         for (int j=0;j<classes.size();j++) {
             mat+="\t";
             mat+=to_string(matrix[i][j]);
+            mat+="%";
         }
         mat+="\n";
     }
     mat+="\t";
     for (string classType:classes) {
         mat+=classType;
-        mat+="\t";
+        mat+="\t\t";
     }
     return mat;
 }
