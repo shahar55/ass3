@@ -11,6 +11,7 @@
 #include "StandartIO.hpp"
 #include <vector>
 #include <memory>
+#include "CLI.hpp"
 
 void printMenu(std::vector<Command*> commands) {
     std::cout<<"Welcome to the KNN Classifier Server. Please choose an option:\n";
@@ -22,24 +23,7 @@ void printMenu(std::vector<Command*> commands) {
 }
 
 int main() {
-    KNNGenerate k(5,"MAN");
-    StandartIO s;
-    UploadCommand u(&s);
-    AlgorithmSettingsCommand a(&s,k);
-    ClassifyCommand c(&s,k);
-    DisplayResCommand d(&s);
-    DownloadResCommand download(&s);
-    ConfusionMatrixCommand cm(&s);
-    ExitCommand e(&s);
-    vector<Command*> commands;
-    commands.push_back(&u);
-    commands.push_back(&a);
-    commands.push_back(&c);
-    commands.push_back(&d);
-    commands.push_back(&download);
-    commands.push_back(&cm);
-    commands.push_back(&e);
-    //printMenu(commands);
-    commands[5]->execute();
-    return 0;
+   CLI c;
+   c.start();
+   return 0;
 }
