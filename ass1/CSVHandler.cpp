@@ -100,7 +100,6 @@ const std:: vector<std::string> CSVHandler::findClassName(std :: vector<std::str
         }
         flag = false;
     }
-    dataString.pop_back();
     return dataString;
     
     
