@@ -4,7 +4,7 @@
 #include <iterator>
 #include <cmath>
 double Flower::getEuclideanDistance(const Flower& other) const{
-    double Sum;
+    double Sum=0;
 	double distance;
 	for(int i=0;i<sizes.size();i++)
 	{
@@ -14,7 +14,7 @@ double Flower::getEuclideanDistance(const Flower& other) const{
 	return distance;
 }
 double Flower::getMANDistance(const Flower& other) const{
-    double Sum;
+    double Sum=0;
 	double distance;
 	for(int i=0;i<sizes.size();i++)
 	{

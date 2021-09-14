@@ -53,30 +53,30 @@ KNNGenerate k(5,"MAN");
         std::cout<<i<<". "<<c->getDescription()<<"\n";
         i++;
     }
-     cin >> opr;  
-  
-   switch (opr)  
+    cin >> opr;
+    cin.ignore();
+    switch (opr)  
     {  
     case '1':
-    commands[1]->execute();
+    commands[0]->execute();
     break;  
     case '2': 
-    commands[2]->execute(); 
+    commands[1]->execute(); 
     break;  
     case '3':
-    commands[3]->execute();    
+    commands[2]->execute();    
     break;  
     case '4':
-    commands[4]->execute();   
+    commands[3]->execute();   
     break;  
     case '5':
-    commands[5]->execute();    
+    commands[4]->execute();    
     break;  
     case '6': 
-    commands[6]->execute(); 
+    commands[5]->execute(); 
     break;  
     case '7':  
-    commands[7]->execute(); 
+    commands[6]->execute(); 
     break;  
     default:  
     cout <<"Something is wrong..!!";  
@@ -87,7 +87,7 @@ KNNGenerate k(5,"MAN");
     }while(opr != 7);    
 }
 void backToMenu() {
-    char c;
+    string c;
      cout <<"back to menu: (type somthing)";
-     cin >> c;
+     getline(cin,c);
 }
