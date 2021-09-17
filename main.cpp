@@ -23,7 +23,8 @@ void printMenu(std::vector<Command*> commands) {
 }
 
 int main() {
-   CLI c;
+    StandartIO dio;
+   CLI c(&dio);
    c.start();
    return 0;
 }

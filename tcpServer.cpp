@@ -67,7 +67,6 @@ int TCPServer::connectToClient() {
         closeServer();
         exit(1);
     }
-    int sent = send(client_sock, "connection ESTABLISHED\n", 23, 0); // return msg to the client to inform him that the connection work.
     return client_sock;
 }
 

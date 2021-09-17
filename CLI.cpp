@@ -17,7 +17,7 @@
 #include<stdlib.h> 
 using namespace std; 
 void backToMenu();
-CLI::CLI()
+CLI::CLI(DefaultIO* dio):dio(dio)
 {
 }
 
@@ -25,18 +25,17 @@ CLI::~CLI()
 {
 }
 void CLI:: start() { 
-char opr;  
+    char opr;
 // display different operation of the calculator  
-std::cout<<"Welcome to the KNN Classifier Server. Please choose an option:\n";
-    KNNGenerate k(5,"MAN");
-    StandartIO s;
-    UploadCommand u(&s);
-    AlgorithmSettingsCommand a(&s,k);
-    ClassifyCommand c(&s,k);
-    DisplayResCommand d(&s);
-    DownloadResCommand download(&s);
-    ConfusionMatrixCommand cm(&s);
-    ExitCommand e(&s);
+    dio->write("Welcome to the KNN Classifier Server. Please choose an option:\n");
+    KNNGenerate k(5,"EUC");
+    UploadCommand u(dio);
+    AlgorithmSettingsCommand a(dio,k);
+    ClassifyCommand c(dio,k);
+    DisplayResCommand d(dio);
+    DownloadResCommand download(dio);
+    ConfusionMatrixCommand cm(dio);
+    ExitCommand e(dio);
     vector<Command*> commands;
     commands.push_back(&u);
     commands.push_back(&a);
