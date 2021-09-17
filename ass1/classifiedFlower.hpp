@@ -20,7 +20,7 @@ class ClassifiedFlower:public Flower{
         std::string getName() const;
         
         // set distance between this flower and unamed flower.
-        void setDistance(UnclassifiedFlower& unNamedFlower);
+        void setDistance(UnclassifiedFlower& unNamedFlower,std::string distanceMetric);
         // operator ">".
         bool operator> (const ClassifiedFlower& namedFlower) const;
         // get distance.

@@ -8,8 +8,16 @@ std::string ClassifiedFlower::getName() const{
     return name;
 }
 
-void ClassifiedFlower::setDistance(UnclassifiedFlower& unNamedFlower) {
-    distance = unNamedFlower.getEuclideanDistance(*this);
+void ClassifiedFlower::setDistance(UnclassifiedFlower& unNamedFlower,std::string distanceMetric) {
+    if (distanceMetric=="EUC") {
+        distance = unNamedFlower.getEuclideanDistance(*this);
+    }
+    else if (distanceMetric=="MAN") {
+        distance = unNamedFlower.getMANDistance(*this);
+    }
+    else if (distanceMetric=="CHE") {
+        distance = unNamedFlower.getCHEDistance(*this);
+    }
 }
 
 bool ClassifiedFlower::operator> (const ClassifiedFlower& namedFlower) const {

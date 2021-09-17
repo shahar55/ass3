@@ -6,7 +6,7 @@
 
 void KNNGenerate::fillDistances(std::vector<ClassifiedFlower>& v,UnclassifiedFlower& c) {
     for (ClassifiedFlower& cf:v) {
-        cf.setDistance(c);
+        cf.setDistance(c,distanceMetric);
     }
 }
 

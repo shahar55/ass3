@@ -27,10 +27,8 @@ CLI::~CLI()
 void CLI:: start() { 
 char opr;  
 // display different operation of the calculator  
-do  
-{  
 std::cout<<"Welcome to the KNN Classifier Server. Please choose an option:\n";
-KNNGenerate k(5,"MAN");
+    KNNGenerate k(5,"MAN");
     StandartIO s;
     UploadCommand u(&s);
     AlgorithmSettingsCommand a(&s,k);
@@ -48,11 +46,24 @@ KNNGenerate k(5,"MAN");
     commands.push_back(&cm);
     commands.push_back(&e);
     //printMenu(commands);./
-    int i=1;
-    for (Command* c : commands) {
-        std::cout<<i<<". "<<c->getDescription()<<"\n";
-        i++;
-    }
+    do {
+        int i=1;
+        for (Command* c : commands) {
+            std::cout<<i<<". "<<c->getDescription()<<"\n";
+            i++;
+        }
+        handleCommand(commands);
+        cout <<" \n------------------------------\n";
+        backToMenu();
+    }while(opr != 7);    
+}
+void backToMenu() {
+    string c;
+    getline(cin,c);
+}
+
+void CLI::handleCommand(vector<Command*>& commands) {
+    char opr;
     cin >> opr;
     cin.ignore();
     switch (opr)  
@@ -82,12 +93,4 @@ KNNGenerate k(5,"MAN");
     cout <<"Something is wrong..!!";  
     break;  
     }  
-    cout <<" \n------------------------------\n";
-    backToMenu();
-    }while(opr != 7);    
-}
-void backToMenu() {
-    string c;
-     cout <<"back to menu: (type somthing)";
-     getline(cin,c);
 }
