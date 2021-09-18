@@ -46,12 +46,14 @@ void CLI:: start() {
     commands.push_back(&cm);
     commands.push_back(&e);
     //printMenu(commands);./
+    std::string menu = "";
     do {
         int i=1;
         for (Command* c : commands) {
-            dio->write(i + ". " + c->getDescription()+ "\n");
+            menu = menu + (i + ". " + c->getDescription()+ "\n");
             i++;
         }
+        dio->write(menu);
         handleCommand(commands);
         dio->write(" \n------------------------------\n");
     } while(opr != 7);    
