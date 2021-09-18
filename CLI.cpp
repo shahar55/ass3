@@ -10,6 +10,7 @@
 #include "ClassifyCommand.hpp"
 #include "confusionMatrixCommand.hpp"
 #include "StandartIO.hpp"
+#include "SocketIO.hpp"
 #include <vector>
 #include <memory>
 #include<stdio.h>    
@@ -48,12 +49,11 @@ void CLI:: start() {
     do {
         int i=1;
         for (Command* c : commands) {
-            std::cout<<i<<". "<<c->getDescription()<<"\n";
+            dio->write(i + ". " + c->getDescription()+ "\n");
             i++;
         }
         handleCommand(commands);
-        cout <<" \n------------------------------\n";
-        backToMenu();
+        dio->write(" \n------------------------------\n");
     }while(opr != 7);    
 }
 void backToMenu() {
@@ -63,8 +63,9 @@ void backToMenu() {
 
 void CLI::handleCommand(vector<Command*>& commands) {
     char opr;
-    cin >> opr;
-    cin.ignore();
+    string StringOpr;
+    StringOpr = dio->read();
+    opr = StringOpr[0];
     switch (opr)  
     {  
     case '1':
@@ -88,8 +89,8 @@ void CLI::handleCommand(vector<Command*>& commands) {
     case '7':  
     commands[6]->execute(); 
     break;  
-    default:  
-    cout <<"Something is wrong..!!";  
+    default: 
+    dio->write("somthing is wrong...");
     break;  
     }  
 }
