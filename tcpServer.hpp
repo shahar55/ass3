@@ -22,12 +22,12 @@ class TCPServer
     const int server_port;
     struct sockaddr_in sin;
     void initializeSin();
+    int connectToClient(); // check and create the connection between this server to a client.
+    static void* handleConnction(void* sock);
 
     public:
         TCPServer(const int);
-        void sendData(int);
-        void getData(int); // get the first data from client (in order to check the connection).
         void handle(); // Classifies the data from the client
-        int connectToClient(); // check and create the connection between this server to a client. 
+        void getConnections(); 
         void closeServer();
 };

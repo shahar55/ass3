@@ -5,11 +5,14 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <pthread.h>
 #include "ass1/CSVHandler.hpp"
 #include "ass1/dataHandler.hpp"
 #include "ass1/knnGenerate.hpp"
 #include "ass1/findFlowerType.hpp"
 #include "tcpServer.hpp"
+#include "CLI.hpp"
+#include "SocketIO.hpp"
 
 using namespace std;
 
@@ -36,26 +39,6 @@ void TCPServer::initializeSin() {
     sin.sin_family = AF_INET;
     sin.sin_addr.s_addr = INADDR_ANY;
     sin.sin_port = htons(server_port);
-}
-
-void TCPServer::getData(int client_sock) {
-    char buffer[4096];
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(client_sock, buffer, expected_data_len, 0); // recieve string-data from client.
-    if (read_bytes == 0) {
-        closeServer();
-        exit(0);
-    }
-    else if (read_bytes < 0) {
-        perror("Error reading from socket");
-        closeServer();
-        exit(1);
-    }
-    else {
-        cout << buffer << endl;
-    }
-    CSVHandler c;
-    c.writeCSV("../resources/TCPUnclassified.csv" ,buffer); // write the string data into csv file.
 }
 
 int TCPServer::connectToClient() {
@@ -90,21 +73,28 @@ void TCPServer::handle() {
     c.writeCSV("../resources/TCPOutput.csv" , types);
 }
 
-void TCPServer::sendData(int client_sock) {
-    CSVHandler c;
-    handle();
-    string v = c.readCSVToString("../resources/TCPOutput.csv");
-    int sent_bytes = send(client_sock, v.c_str() , strlen(v.c_str()), 0); // send the types of the unflowers to the client.
-    if (sent_bytes < 0) {
-        perror("Error writing to socket");
-        closeServer(); // shutdown socket.
-        exit(1);
+void TCPServer::getConnections() {
+    while (true) {
+        int* client = new int(connectToClient());
+        pthread_t t;
+        pthread_create(&t,NULL,handleConnction,client);
     }
 }
 
 void TCPServer::closeServer() {
     close(sock);
 }
+
+void* TCPServer::handleConnction(void* sock) {
+    int clientSock = *((int*)sock);
+    free(sock);
+    SocketIO soc(clientSock);
+    CLI cli(&soc);
+    cli.start();
+    return NULL;
+}
+
+
 /*
  * main:
   create a tcp server, that get data from client  implement it, and send it back,
@@ -112,9 +102,7 @@ void TCPServer::closeServer() {
  * */
 int main() {
     TCPServer s(50000);
-    int client = s.connectToClient();
-    s.getData(client);
-    s.sendData(client);
-    s.closeServer();
+    s.getConnections();
+    //s.closeServer();
     return 0;
 }

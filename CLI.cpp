@@ -54,7 +54,7 @@ void CLI:: start() {
         }
         handleCommand(commands);
         dio->write(" \n------------------------------\n");
-    }while(opr != 7);    
+    } while(opr != 7);    
 }
 void backToMenu() {
     string c;
