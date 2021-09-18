@@ -27,7 +27,6 @@ class TCPServer
 
     public:
         TCPServer(const int);
-        void handle(); // Classifies the data from the client
         void getConnections(); 
         void closeServer();
 };

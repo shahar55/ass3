@@ -13,9 +13,10 @@
 #include "SocketIO.hpp"
 #include <vector>
 #include <memory>
-#include<stdio.h>    
-#include<math.h>  
-#include<stdlib.h> 
+#include <sys/socket.h>
+#include <stdio.h>    
+#include <math.h>  
+#include <stdlib.h> 
 using namespace std; 
 void backToMenu();
 CLI::CLI(DefaultIO* dio):dio(dio)
@@ -45,7 +46,6 @@ void CLI:: start() {
     commands.push_back(&download);
     commands.push_back(&cm);
     commands.push_back(&e);
-    //printMenu(commands);./
     std::string menu = "";
     do {
         int i=1;
@@ -57,7 +57,9 @@ void CLI:: start() {
         handleCommand(commands);
         dio->write(" \n------------------------------\n");
     } while(opr != 7);    
+    dio->close();
 }
+
 void backToMenu() {
     string c;
     getline(cin,c);
@@ -70,29 +72,29 @@ void CLI::handleCommand(vector<Command*>& commands) {
     opr = StringOpr[0];
     switch (opr)  
     {  
-    case '1':
-    commands[0]->execute();
-    break;  
-    case '2': 
-    commands[1]->execute(); 
-    break;  
-    case '3':
-    commands[2]->execute();    
-    break;  
-    case '4':
-    commands[3]->execute();   
-    break;  
-    case '5':
-    commands[4]->execute();    
-    break;  
-    case '6': 
-    commands[5]->execute(); 
-    break;  
-    case '7':  
-    commands[6]->execute(); 
-    break;  
-    default: 
-    dio->write("somthing is wrong...");
-    break;  
+        case '1':
+            commands[0]->execute();
+        break;  
+        case '2': 
+            commands[1]->execute(); 
+        break;  
+        case '3':
+            commands[2]->execute();    
+        break;  
+        case '4':
+            commands[3]->execute();   
+        break;  
+        case '5':
+            commands[4]->execute();    
+        break;  
+        case '6': 
+            commands[5]->execute(); 
+        break;  
+        case '7':  
+            commands[6]->execute(); 
+        break;  
+        default: 
+            dio->write("The command is not supportable");
+        break;  
     }  
 }

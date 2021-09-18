@@ -53,26 +53,6 @@ int TCPServer::connectToClient() {
     return client_sock;
 }
 
-void TCPServer::handle() {
-    CSVHandler c;
-    dataHandler d;
-    std::vector<std::vector<std::string>> s1 = c.readCSV("../resources/classified.csv"); // turn csv file into string or.
-    std::vector<std::vector<std::string>> s2 = c.readCSV("../resources/TCPUnclassified.csv"); // turn csv file into stringvect vector.
-    std::vector<ClassifiedFlower> c1 =  d.createClassedFlowersFromVector (s1); // create classified flowers from the string.
-    std::vector<UnclassifiedFlower> c2 =  d.createUnClassedFlowersFromVector (s2); // create unclassified flowers from the string.
-    std::vector<std::string> types; // the returned value vector, that is the types of the unFlowers.
-    KNNGenerate k;
-    /**
-     * for loop that find for each unFlower his type according to knn algorithem.
-     * **/
-    for (UnclassifiedFlower u:c2) {
-        std::vector<ClassifiedFlower> l = k.kthClosest(u,c1);
-        std::string type = findFlowerName(l);
-        types.push_back(type);
-    }
-    c.writeCSV("../resources/TCPOutput.csv" , types);
-}
-
 void TCPServer::getConnections() {
     while (true) {
         int* client = new int(connectToClient());
