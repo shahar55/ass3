@@ -8,5 +8,5 @@ class StandartIO:public DefaultIO{
         virtual std::string read();
         virtual std::string readData();
         virtual void write(std:: string msg);
-        virtual void close();
+        virtual void closeConnection();
 };

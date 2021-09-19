@@ -22,6 +22,6 @@ void DownloadResCommand::execute(){
         i++;
     }
     output.pop_back();
-    handler.writeCSV("../resources/results.txt",output);
-    dio->write("Done.");
+    dio->write(output);
+    dio->write("Done.\n");
 }

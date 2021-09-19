@@ -25,11 +25,12 @@ class Client
      * */
     std::string protocol;
     void initializeSin();
-    bool changeProtocol(std::string);
-    void sendDataByTCP(const char*);
-    void sendDataByUDP(const char*);
-    std::string getDataByTCP();
-    std::string getDataByUDP();
+    void uploadCommand();
+    void algorithmSettingsCommand();
+    void classifyCommand();
+    void displayResultsCommand();
+    void downloadResultsCommand();
+    void confMatrixCommand();
     public:
         Client(const char*,const int); // constructor.
         void sendData(const char*);
@@ -41,6 +42,7 @@ class Client
 
         void operateCommand(const char*);
         void handleCommand(std::vector<std::string>); // Determines the migration protocol, read and write to csv files.
-        static void* handleConnction(void* sock);
+        void handleConnction();
         void choosePath();
+        void closeConnection();
 };

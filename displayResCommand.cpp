@@ -21,7 +21,6 @@ void DisplayResCommand::execute(){
         output+=to_string(i)+"  "+arg+"\n";
         i++;
     }
-    output.pop_back();
     dio->write(output);
-    dio->write("Done.");
+    dio->write("Done.\n");
 }

@@ -21,6 +21,6 @@ std::string StandartIO::readData() {
     return handler.readCSVToString(filePath.c_str());
 }
 
-void StandartIO::close(){
+void StandartIO::closeConnection(){
     exit(1);
 }

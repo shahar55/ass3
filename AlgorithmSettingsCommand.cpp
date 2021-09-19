@@ -11,7 +11,7 @@ AlgorithmSettingsCommand::AlgorithmSettingsCommand(DefaultIO* dio,KNNGenerate& g
 }
 
 void AlgorithmSettingsCommand::execute(){
-    dio->write("The current KNN parameters are: "+gen.getParameters());
+    dio->write("The current KNN parameters are: "+gen.getParameters()+"\n");
     string arg;
     vector<string> args;
     string newArgs = dio->read();

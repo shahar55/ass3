@@ -15,7 +15,7 @@ ClassifyCommand::ClassifyCommand(DefaultIO* dio,KNNGenerate& gen):Command(dio),g
 
 void ClassifyCommand::execute(){
     classify();
-    dio->write("classifying data complete.");
+    dio->write("classifying data complete.\n");
 }
 
 void ClassifyCommand::classify(){

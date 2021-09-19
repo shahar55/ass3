@@ -46,32 +46,31 @@ void CLI:: start() {
     commands.push_back(&download);
     commands.push_back(&cm);
     commands.push_back(&e);
-    std::string menu = "";
+    std::string menu = getMenu(commands);
+    bool toContinue = true;
     do {
-        int i=1;
-        for (Command* c : commands) {
-            menu = menu + (i + ". " + c->getDescription()+ "\n");
-            i++;
-        }
         dio->write(menu);
-        handleCommand(commands);
-        dio->write(" \n------------------------------\n");
-    } while(opr != 7);    
-    dio->close();
+        toContinue = handleCommand(commands);
+    } while(toContinue);    
 }
 
-void backToMenu() {
-    string c;
-    getline(cin,c);
+string CLI::getMenu(vector<Command*>& commands) {
+    string menu="";
+    int i=1;
+    for (Command* c : commands) {
+        menu += (to_string(i) + ". " + c->getDescription()+ "\n");
+        i++;
+    }
+    return menu;
 }
 
-void CLI::handleCommand(vector<Command*>& commands) {
+bool CLI::handleCommand(vector<Command*>& commands) {
     char opr;
     string StringOpr;
     StringOpr = dio->read();
     opr = StringOpr[0];
     switch (opr)  
-    {  
+    {
         case '1':
             commands[0]->execute();
         break;  
@@ -91,10 +90,12 @@ void CLI::handleCommand(vector<Command*>& commands) {
             commands[5]->execute(); 
         break;  
         case '7':  
-            commands[6]->execute(); 
+            commands[6]->execute();
+            return false;
         break;  
         default: 
             dio->write("The command is not supportable");
-        break;  
-    }  
+        break;
+    }
+    return true;
 }

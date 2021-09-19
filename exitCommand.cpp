@@ -14,5 +14,5 @@ ExitCommand::ExitCommand(DefaultIO* dio):Command(dio){
 }
 
 void ExitCommand::execute(){
-    dio->close();
+    dio->closeConnection();
 }

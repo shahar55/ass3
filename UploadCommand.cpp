@@ -10,12 +10,12 @@ UploadCommand::UploadCommand(DefaultIO* dio):Command(dio){
 }
 
 void UploadCommand::execute(){
-    dio->write("Please upload your local train CSV file.");
-    string trainData = dio->readData(); //getting the CSV data
-    dio->write("Please upload your local test CSV file.");
-    string testData = dio->readData();
+    dio->write("Please upload your local train CSV file.\n");
+    string trainData = dio->read(); //getting the CSV data
+    dio->write("Please upload your local test CSV file.\n");
+    string testData = dio->read();
     upload(trainData,testData);
-    dio->write("Upload complete.");
+    dio->write("Upload complete.\n");
 }
 
 void UploadCommand::upload(string train, string test) {

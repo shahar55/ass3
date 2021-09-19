@@ -16,7 +16,7 @@ public:
     ~SocketIO();
     virtual void write(std::string msg);
     virtual std::string read();
-    virtual void close();
+    virtual void closeConnection();
     void terminate();
     virtual std::string readData();
 };

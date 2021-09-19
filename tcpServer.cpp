@@ -28,7 +28,7 @@ TCPServer::TCPServer(const int server_port):server_port(server_port) {
         exit(1);
     }
 
-    if (listen(sock, 5) < 0) {
+    if (listen(sock, 10) < 0) {
         perror("Error listening to a socket");
         exit(1);
     }
@@ -71,6 +71,7 @@ void* TCPServer::handleConnction(void* sock) {
     SocketIO soc(clientSock);
     CLI cli(&soc);
     cli.start();
+    soc.closeConnection();
     return NULL;
 }
 

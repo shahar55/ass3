@@ -75,10 +75,5 @@ string ConfusionMatrixCommand::confusionMatrixToString(vector<vector<int>>& matr
         }
         mat+="\n";
     }
-    mat+="\t";
-    for (string classType:classes) {
-        mat+=classType;
-        mat+="\t\t";
-    }
     return mat;
 }
