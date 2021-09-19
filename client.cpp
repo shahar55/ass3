@@ -138,7 +138,59 @@ string Client::getData() {
         return getDataByTCP();
     return NULL;
 }
+void* Client::handleConnction(void* clientSock) {
+       int sock = *((int*)clientSock);
+ 
+    printf("Connection estabilished\n");
+ 
+    int choice;
+        cin >> choice;
+         // Create connection
+    // depending on the input
+    string client_request;
+    switch (choice) {
+    case 1: {
+        string client_request = "1";
+        break;
+    }
+    case 2: {
+        string client_request = "2";
+        break;
+    }
+    case 3: {
+        string client_request = "3";
+        break;
+    }
+    case 4: {
+        string client_request = "4";
+        break;
+    }
+    case 5: {
+        string client_request = "5";
+        break;
+    }
+    case 6: {
+        string client_request = "";
+        break;
+    }
+    case 7: {
+        string client_request = "7";
+        break;
+    }
 
+    default:
+        std:: cout<<"Invalid Input\n";
+        break;
+    }
+    int data_len = strlen(client_request.c_str());
+    int sent_bytes = send(sock, client_request.c_str(), data_len, 0);
+    if (sent_bytes < 0) {
+     perror("Error while sending data to server");
+    }
+    pthread_exit(NULL);
+    
+    return 0;
+}
 /*
  * main:
   create a client, that decide the data transformation - protocol,
@@ -146,12 +198,23 @@ string Client::getData() {
   according to knn aldorithem.
   (Achieved by using client functions)
  * */
-
+void Client:: choosePath() {
+     int* socketPointer = new int(sock);
+    while (1)
+    {
+       pthread_t tid;
+        pthread_create(&tid, NULL,
+                       handleConnction,
+                       socketPointer);
+        sleep(20);
+    // Suspend execution of
+    // calling thread
+    pthread_join(tid, NULL);
+    }
+    free(socketPointer);
+    return;
+}
 int main() {
     Client c("127.0.0.1",50000);
-    c.getData();
-    string command;
-    getline(cin,command);
-    c.operateCommand(command.c_str());
-    return 0;
+    c.choosePath();
 }

@@ -41,5 +41,6 @@ class Client
 
         void operateCommand(const char*);
         void handleCommand(std::vector<std::string>); // Determines the migration protocol, read and write to csv files.
-    
+        static void* handleConnction(void* sock);
+        void choosePath();
 };
