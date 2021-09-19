@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <pthread.h>
+#include <thread>
 #include "ass1/CSVHandler.hpp"
 #include "ass1/dataHandler.hpp"
 #include "ass1/knnGenerate.hpp"
@@ -43,6 +44,11 @@ void TCPServer::initializeSin() {
 
 int TCPServer::connectToClient() {
     struct sockaddr_in client_sin;
+    struct timeval tv;
+    memset(&tv,0,sizeof(tv));
+    tv.tv_sec=30;
+    //Setting timeout
+    setsockopt(sock,SOL_SOCKET,SO_RCVTIMEO,(struct timeval*)&tv,sizeof(struct timeval));
     unsigned int addr_len = sizeof(client_sin);
     int client_sock = accept(sock,  (struct sockaddr *) &client_sin,  &addr_len);
     if (client_sock < 0) {
