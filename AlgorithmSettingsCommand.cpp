@@ -6,12 +6,12 @@
 #include <vector>
 using namespace std;
 
-AlgorithmSettingsCommand::AlgorithmSettingsCommand(DefaultIO* dio,KNNGenerate& gen):Command(dio),gen(gen){
+AlgorithmSettingsCommand::AlgorithmSettingsCommand(DefaultIO* dio,ServerDataManagement& manager):Command(dio,manager){
     description="algorithm settings";
 }
 
 void AlgorithmSettingsCommand::execute(){
-    dio->write("The current KNN parameters are: "+gen.getParameters()+"\n");
+    dio->write("The current KNN parameters are: "+manager.getKNN().getParameters()+"\n");
     string arg;
     vector<string> args;
     string newArgs = dio->read();
@@ -38,6 +38,6 @@ void AlgorithmSettingsCommand::changeParams(vector<string> params) {
         dio->write("Invalid value for distance metric");
         return;
     }
-    gen.changeK(atoi(params[0].c_str()));
-    gen.changeDistanceMetric(params[1]);
+    manager.changeK(atoi(params[0].c_str()));
+    manager.changeDistanceMetric(params[1]);
 }

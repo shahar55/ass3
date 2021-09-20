@@ -5,27 +5,28 @@
 #include "ass1/CSVHandler.hpp"
 #include "ass1/dataHandler.hpp"
 #include "ass1/findFlowerType.hpp"
+#include "ServerDataManagement.hpp"
 #include <sstream>
 #include <vector>
 #include <map>
 #include <cmath>
 using namespace std;
 
-ConfusionMatrixCommand::ConfusionMatrixCommand(DefaultIO* dio):Command(dio){
+ConfusionMatrixCommand::ConfusionMatrixCommand(DefaultIO* dio,ServerDataManagement& manager):Command(dio,manager){
     description="display algorithm confusion matrix";
 }
 
 void ConfusionMatrixCommand::execute(){
     CSVHandler handler;
-    vector<string> classes = handler.findClassesWithoutDuplicates("../resources/test.csv");
+    vector<string> classes = handler.findClassesWithoutDuplicates(manager.getTest());
     map<string,int> classesMap;
     int i=0;
     for (string classType:classes) {
         classesMap.insert(pair<string,int>(classType,i));
         i++;
     }
-    vector<string> trueClasses = handler.findClasses("../resources/test.csv");
-    vector<string> predictedClasses = handler.findClasses("../resources/output.csv");
+    vector<string> trueClasses = handler.findClasses(manager.getTest());
+    vector<string> predictedClasses = handler.findClasses(manager.getOutput());
     vector<vector<int>> matrix;
     clearMatrix(matrix,classes.size());
     fillConfusionMatrix(matrix,classesMap,trueClasses,predictedClasses);

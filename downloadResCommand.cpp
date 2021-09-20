@@ -2,17 +2,18 @@
 #include "StandartIO.hpp"
 #include <string.h>
 #include "ass1/CSVHandler.hpp"
+#include "ServerDataManagement.hpp"
 #include <sstream>
 #include <vector>
 using namespace std;
 
-DownloadResCommand::DownloadResCommand(DefaultIO* dio):Command(dio){
+DownloadResCommand::DownloadResCommand(DefaultIO* dio,ServerDataManagement& manager):Command(dio,manager){
     description="download results";
 }
 
 void DownloadResCommand::execute(){
     CSVHandler handler;
-    string results = handler.readCSVToString("../resources/output.csv");
+    string results = manager.getOutput();
     istringstream split(results);
     string arg;
     int i=1;

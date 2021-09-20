@@ -2,10 +2,11 @@
 #include "StandartIO.hpp"
 #include <string.h>
 #include "ass1/CSVHandler.hpp"
+#include "ServerDataManagement.hpp"
 
 using namespace std;
 
-UploadCommand::UploadCommand(DefaultIO* dio):Command(dio){
+UploadCommand::UploadCommand(DefaultIO* dio,ServerDataManagement& manager):Command(dio,manager){
     description="upload an unclassified csv data file";
 }
 
@@ -20,7 +21,7 @@ void UploadCommand::execute(){
 
 void UploadCommand::upload(string train, string test) {
     CSVHandler handler;
-    handler.writeCSV("../resources/classified.csv",train);
-    handler.writeCSV("../resources/test.csv",test);
-    handler.testToUnclassified("../resources/test.csv");
+    manager.setTest(test);
+    manager.setClassified(train);
+    manager.setUnClassified(handler.testToUnclassified(test));
 }

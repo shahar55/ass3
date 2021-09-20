@@ -7,6 +7,6 @@ using namespace std;
 
 class DownloadResCommand : public Command {
     public:
-        DownloadResCommand(DefaultIO* dio);
+        DownloadResCommand(DefaultIO* dio,ServerDataManagement& manager);
         virtual void execute();
 };

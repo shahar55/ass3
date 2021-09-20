@@ -66,8 +66,8 @@ void CSVHandler::writeCSV(std::string fileName, std::string s) {
 CSVHandler::CSVHandler() {
 }
 
-void CSVHandler::testToUnclassified(std::string testPath) {
-    std::vector<std::vector<std::string>> testData = readCSV(testPath.c_str());
+std::string CSVHandler::testToUnclassified(std::string test) {
+    std::vector<std::vector<std::string>> testData = fromStringToVector(test);
     for (std::vector<std::string>& row : testData) {
         row.pop_back();
     }
@@ -81,7 +81,7 @@ void CSVHandler::testToUnclassified(std::string testPath) {
         unclassified+="\n";
     }
     unclassified.pop_back();
-    writeCSV("../resources/Unclassified.csv",unclassified);
+    return unclassified;
 }
 
 const std:: vector<std::string> CSVHandler::findClassName(std :: vector<std::string> data) {
@@ -104,15 +104,37 @@ const std:: vector<std::string> CSVHandler::findClassName(std :: vector<std::str
     
     
 }
-std:: vector<std::string> CSVHandler::findClassesWithoutDuplicates(char const* fileName) {
-    return findClassName(findClasses(fileName));
+std:: vector<std::string> CSVHandler::findClassesWithoutDuplicates(std::string file) {
+    return findClassName(findClasses(file));
 }
 
-std:: vector<std::string> CSVHandler::findClasses(char const* fileName) {
-    std::vector<std::vector<std::string>> data = readCSV(fileName);
+std:: vector<std::string> CSVHandler::findClasses(std::string file) {
+    std::vector<std::vector<std::string>> data = fromStringToVector(file);
     std::vector<std:: string> classFlowers;
     for (unsigned i=0; i<data.size(); ++i) {
        classFlowers.push_back(data[i][data[i].size() - 1]);
     }
     return classFlowers;
+}
+
+std::vector<std::vector<std::string>> CSVHandler::fromStringToVector(std::string input) {
+    std::stringstream s(input);
+    std::vector<std::vector<std::string>> data;
+    std::string line;
+    while (getline(s,line)) {
+        std::vector<std::string> tmp;
+        tmp = splitLine(line);
+        data.push_back(tmp);
+    }
+    return data;
+}
+
+std::string CSVHandler::fromVectorToString(std::vector<std::string> input) {
+    std::string out="";
+    for (std::string line:input) {
+        out+=line;
+        out+="\n";
+    }
+    out.pop_back();
+    return out;
 }

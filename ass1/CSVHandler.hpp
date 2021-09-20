@@ -32,7 +32,9 @@ class CSVHandler {
         // write string to csv
         void writeCSV(std::string, std::string);
 
-        void testToUnclassified(std::string testPath);
-        std:: vector<std::string> findClassesWithoutDuplicates(char const* fileName);
-        std:: vector<std::string> findClasses(char const* fileName);
+        std::string testToUnclassified(std::string test);
+        std::vector<std::string> findClassesWithoutDuplicates(std::string file);
+        std::vector<std::string> findClasses(std::string file);
+        std::vector<std::vector<std::string>> fromStringToVector(std::string input);
+        std::string fromVectorToString(std::vector<std::string> input);
 };

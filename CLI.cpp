@@ -9,6 +9,7 @@
 #include "exitCommand.hpp"
 #include "ClassifyCommand.hpp"
 #include "confusionMatrixCommand.hpp"
+#include "ServerDataManagement.hpp"
 #include "StandartIO.hpp"
 #include "SocketIO.hpp"
 #include <vector>
@@ -30,14 +31,14 @@ void CLI:: start() {
     char opr;
 // display different operation of the calculator  
     dio->write("Welcome to the KNN Classifier Server. Please choose an option:\n");
-    KNNGenerate k(5,"EUC");
-    UploadCommand u(dio);
-    AlgorithmSettingsCommand a(dio,k);
-    ClassifyCommand c(dio,k);
-    DisplayResCommand d(dio);
-    DownloadResCommand download(dio);
-    ConfusionMatrixCommand cm(dio);
-    ExitCommand e(dio);
+    ServerDataManagement manager;
+    UploadCommand u(dio,manager);
+    AlgorithmSettingsCommand a(dio,manager);
+    ClassifyCommand c(dio,manager);
+    DisplayResCommand d(dio,manager);
+    DownloadResCommand download(dio,manager);
+    ConfusionMatrixCommand cm(dio,manager);
+    ExitCommand e(dio,manager);
     vector<Command*> commands;
     commands.push_back(&u);
     commands.push_back(&a);

@@ -1,6 +1,6 @@
 #pragma once
 #include "Command.hpp"
-#include "ass1/knnGenerate.hpp"
+#include "ServerDataManagement.hpp"
 #include <vector>
 #include <string.h>
 #include <map>
@@ -13,6 +13,6 @@ class ConfusionMatrixCommand : public Command {
         void matrixToPercentage(vector<vector<int>>& matrix);
         string confusionMatrixToString(vector<vector<int>>& matrix,vector<string> classes);
     public:
-        ConfusionMatrixCommand(DefaultIO* dio);
+        ConfusionMatrixCommand(DefaultIO* dio,ServerDataManagement& manager);
         virtual void execute();
 };

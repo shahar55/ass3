@@ -5,11 +5,12 @@
 #include "ass1/CSVHandler.hpp"
 #include "ass1/dataHandler.hpp"
 #include "ass1/findFlowerType.hpp"
+#include "ServerDataManagement.hpp"
 #include <sstream>
 #include <vector>
 using namespace std;
 
-ExitCommand::ExitCommand(DefaultIO* dio):Command(dio){
+ExitCommand::ExitCommand(DefaultIO* dio,ServerDataManagement& manager):Command(dio,manager){
     description="exit";
 }
 
