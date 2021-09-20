@@ -12,7 +12,7 @@ Clients port: Provided randomly by computer
 Clients IP: 127.0.0.1
 Buffer size: 4096 byte's 
 ## UML
-![image](https://user-images.githubusercontent.com/88191199/130476610-47e785cb-3927-45ab-b6db-7a90cb8d757b.png)
+![image](https://user-images.githubusercontent.com/88191199/134017848-d1029031-6307-4bb0-bc3e-fee15521fe28.png)
 ## Assingment's Requirements
 The client will receive a menu from the server and will have to choose which task he wants the server to perform,
 by pressing one of the following keys on the keyboard:
