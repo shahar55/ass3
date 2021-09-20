@@ -5,6 +5,7 @@
 ![](http://i.imgur.com/Ssfp7.gif)
 
 ![](http://i.imgur.com/60bts.gif)
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 ## Overview
 In this exercise we implemented a more realistic server and client than we did in Milestone 2, among other things we used parallelism. That is, we allowed receipt of more than one customer.
 When a client logs in,
