@@ -34,7 +34,7 @@ by pressing one of the following keys on the keyboard:
 ## General Instructions
 You can find all the required files under `Develop branch`.
 In order to run the project you need to use the `CMakeLists.txt` - which we provided to you and exsists under Develop branch. <br/>
-After building the project using the CMake file, you will have to run the project in 2 or more <ins>differents</ins> terminals (servers before the client) using these commands:
+After building the project using the CMake file, you will have to run the project in 2 or more <ins>differents</ins> terminals (server before the clients) using these commands:
 ```ruby
     ./runServer
 ```
