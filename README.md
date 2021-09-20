@@ -16,7 +16,7 @@ Buffer size: 4096 byte's
 ## Assingment's Requirements
 The client will receive a menu from the server and will have to choose which task he wants the server to perform,
 by pressing one of the following keys on the keyboard:
-```
+```diff
 - 1 = upload an unclassified csv data file.
 - 2 = algorithm settings.
 - 3 = classify data.
