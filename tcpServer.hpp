@@ -18,13 +18,13 @@
 
 class TCPServer
 {
+    int numOfClients;
     int sock; // the server socker.
     const int server_port;
     struct sockaddr_in sin;
     void initializeSin();
     int connectToClient(); // check and create the connection between this server to a client.
-    static void* handleConnction(void* sock);
-
+    static void handleConnction(int sock,int *numOfClients);
     public:
         TCPServer(const int);
         void getConnections(); 

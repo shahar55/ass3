@@ -5,7 +5,6 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
-#include <pthread.h>
 #include <thread>
 #include "ass1/CSVHandler.hpp"
 #include "ass1/dataHandler.hpp"
@@ -18,6 +17,7 @@
 using namespace std;
 
 TCPServer::TCPServer(const int server_port):server_port(server_port) {
+    numOfClients=0;
     initializeSin();
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
@@ -43,42 +43,60 @@ void TCPServer::initializeSin() {
 }
 
 int TCPServer::connectToClient() {
-    struct sockaddr_in client_sin;
     struct timeval tv;
-    memset(&tv,0,sizeof(tv));
-    tv.tv_sec=30;
-    //Setting timeout
-    setsockopt(sock,SOL_SOCKET,SO_RCVTIMEO,(struct timeval*)&tv,sizeof(struct timeval));
-    unsigned int addr_len = sizeof(client_sin);
-    int client_sock = accept(sock,  (struct sockaddr *) &client_sin,  &addr_len);
-    if (client_sock < 0) {
-        perror("Error accepting client");
-        closeServer();
-        exit(1);
+    struct sockaddr_in client_sin;
+    memset(&tv, 0, sizeof(tv));
+    // Timeout in seconds
+    tv.tv_sec = 30;
+
+    fd_set readfds;
+    FD_ZERO(&readfds);
+    FD_SET(sock, &readfds);
+
+    if (select(sock + 1, &readfds, NULL, NULL, &tv) < 0) {
+        perror("select error");
     }
-    return client_sock;
+    if (FD_ISSET(sock,&readfds)) {
+        unsigned int addr_len = sizeof(client_sin);
+        int client_sock = accept(sock, (struct sockaddr *) &client_sin,  &addr_len);
+        if (client_sock < 0) {
+            perror("Error accepting client");
+            closeServer();
+            exit(1);
+        }
+        return client_sock;
+    }
+    //Setting timeout
+    return -1;
 }
 
 void TCPServer::getConnections() {
     while (true) {
-        int* client = new int(connectToClient());
-        pthread_t t;
-        pthread_create(&t,NULL,handleConnction,client);
+        int client = connectToClient();
+        if (client!=-1) {
+            numOfClients++;
+            thread handClient(handleConnction,client,&numOfClients);
+            handClient.detach();
+        }
+        else {
+            break;
+        }
     }
+    while (numOfClients) {}
 }
 
 void TCPServer::closeServer() {
     close(sock);
 }
 
-void* TCPServer::handleConnction(void* sock) {
-    int clientSock = *((int*)sock);
-    free(sock);
+void TCPServer::handleConnction(int sock,int* numOfClients) {
+    int clientSock = sock;
     SocketIO soc(clientSock);
     CLI cli(&soc);
     cli.start();
     soc.closeConnection();
-    return NULL;
+    (*numOfClients)--;
+    return;
 }
 
 
@@ -90,6 +108,6 @@ void* TCPServer::handleConnction(void* sock) {
 int main() {
     TCPServer s(50000);
     s.getConnections();
-    //s.closeServer();
+    s.closeServer();
     return 0;
 }
