@@ -109,5 +109,6 @@ int main() {
     TCPServer s(50000);
     s.getConnections();
     s.closeServer();
+    exit(1);
     return 0;
 }

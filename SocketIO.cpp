@@ -21,7 +21,7 @@ void SocketIO::stop() {
 
 
 std::string SocketIO::read() {
-    char buffer[4096];
+    char buffer[8192];
     memset(buffer,0, sizeof(buffer));
     int expected_data_len = sizeof(buffer);
     int read_bytes = recv(fd, buffer, expected_data_len, 0); // recieve string-data from client.

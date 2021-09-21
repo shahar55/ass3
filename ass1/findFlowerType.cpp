@@ -30,12 +30,10 @@ const string findFlowerName(std :: vector<ClassifiedFlower> data) {
     int max = 0;
     int iMax = 0;
     for (int i = 0; i < arr.size(); i++){
-        if (arr[i] >= max) {
+        if (arr[i] > max) {
             max = arr[i];
             iMax = i;
         }
     }
     return dataString[iMax];
-    
-    
 }
