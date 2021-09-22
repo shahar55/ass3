@@ -24,4 +24,5 @@ void UploadCommand::upload(string train, string test) {
     manager.setTest(test);
     manager.setClassified(train);
     manager.setUnClassified(handler.testToUnclassified(test));
+    manager.setOutput("ERROR: the data hasn't been classified.\n");
 }
