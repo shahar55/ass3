@@ -15,6 +15,8 @@ class KNNGenerate{
     private:
         int k;
         std::string distanceMetric;
+        int classK;
+        std::string classDistanceMetric;
     public:
         KNNGenerate(int k=5,std::string distanceMetric="EUC");
         // find the k (th) closest flowers to unNamed flower. 
@@ -25,4 +27,6 @@ class KNNGenerate{
         void changeK(int k);
         void changeDistanceMetric(std::string distanceMetric);
         std::string getParameters();
+        void saveCurrParams();
+        std::string getClassParameters();
 };

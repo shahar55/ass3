@@ -16,6 +16,7 @@ ClassifyCommand::ClassifyCommand(DefaultIO* dio,ServerDataManagement& manager):C
 
 void ClassifyCommand::execute(){
     classify();
+    manager.getKNN().saveCurrParams();
     dio->write("classifying data complete.\n");
 }
 

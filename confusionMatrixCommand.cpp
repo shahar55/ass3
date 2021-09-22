@@ -76,6 +76,6 @@ string ConfusionMatrixCommand::confusionMatrixToString(vector<vector<int>>& matr
         }
         mat+="\n";
     }
-    mat+=("The current KNN parameters are: "+manager.getKNN().getParameters()+"\n");
+    mat+=("The current KNN parameters are: "+manager.getKNN().getClassParameters()+"\n");
     return mat;
 }

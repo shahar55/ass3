@@ -37,3 +37,12 @@ void KNNGenerate::changeDistanceMetric(std::string distanceMetric) {
 std::string KNNGenerate::getParameters() {
     return "K = "+std::to_string(k)+", distance metric = "+distanceMetric;
 }
+
+void KNNGenerate::saveCurrParams(){
+    classK = k;
+    classDistanceMetric = distanceMetric;
+}
+
+std::string KNNGenerate::getClassParameters() {
+    return "K = "+std::to_string(classK)+", distance metric = "+classDistanceMetric;
+}
