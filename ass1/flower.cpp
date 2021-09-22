@@ -18,11 +18,12 @@ double Flower::getMANDistance(const Flower& other) const{
 	double distance=0;
 	for(int i=0;i<sizes.size();i++)
 	{
-		Sum = Sum + abs((sizes[i]-other.sizes[i]));
-		distance = (Sum);
+		Sum = Sum + std::abs((sizes[i]-other.sizes[i]));
 	}
+	distance = Sum;
 	return distance;
 }
+
 double Flower::getCHEDistance(const Flower& other) const{
     double max=0;
     double maxCheck=0;
@@ -30,7 +31,7 @@ double Flower::getCHEDistance(const Flower& other) const{
 	for(int i=0;i<sizes.size();i++)
 	{
         maxCheck = max;
-		max = std::max(maxCheck, fabs(sizes[i] - other.sizes[i]));
+		max = std::max(maxCheck, std::abs(sizes[i] - other.sizes[i]));
 		distance = max;
 	}
 	return distance;
