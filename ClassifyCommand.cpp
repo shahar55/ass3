@@ -19,9 +19,11 @@ void ClassifyCommand::execute(){
         dio->write(manager.getClassified());
         return;
     }
-    classify();
-    manager.getKNN().saveCurrParams();
-    dio->write("classifying data complete.\n");
+    else {
+        classify();
+        manager.getKNN().saveCurrParams();
+        dio->write("classifying data complete.\n");
+    }
 }
 
 void ClassifyCommand::classify(){

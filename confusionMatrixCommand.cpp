@@ -21,7 +21,7 @@ void ConfusionMatrixCommand::execute(){
         dio->write(manager.getOutput());
         return;
     }
-    CSVHandler handler;
+    else {CSVHandler handler;
     vector<string> classes = handler.findClassesWithoutDuplicates(manager.getTest());
     map<string,int> classesMap;
     int i=0;
@@ -36,6 +36,7 @@ void ConfusionMatrixCommand::execute(){
     fillConfusionMatrix(matrix,classesMap,trueClasses,predictedClasses);
     matrixToPercentage(matrix);
     dio->write(confusionMatrixToString(matrix,classes));
+    }
 }
 
 void ConfusionMatrixCommand::fillConfusionMatrix(vector<vector<int>>& mat,map<string,int> mapClass,vector<string> trueClasses,vector<string> predictedClasses) {

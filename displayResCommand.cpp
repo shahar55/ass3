@@ -17,15 +17,17 @@ void DisplayResCommand::execute(){
         dio->write(manager.getOutput());
         return;
     }
-    string results = manager.getOutput();
-    istringstream split(results);
-    string arg;
-    int i=1;
-    string output;
-    while (getline(split,arg)) {
-        output+=to_string(i)+"  "+arg+"\n";
-        i++;
+    else {
+        string results = manager.getOutput();
+        istringstream split(results);
+        string arg;
+        int i=1;
+        string output;
+        while (getline(split,arg)) {
+            output+=to_string(i)+"  "+arg+"\n";
+            i++;
+        }
+        dio->write(output);
+        dio->write("Done.\n");
     }
-    dio->write(output);
-    dio->write("Done.\n");
 }

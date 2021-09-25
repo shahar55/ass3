@@ -17,7 +17,7 @@ void DownloadResCommand::execute(){
         dio->write(manager.getOutput());
         return;
     }
-    string results = manager.getOutput();
+    else {string results = manager.getOutput();
     istringstream split(results);
     string arg;
     int i=1;
@@ -29,4 +29,5 @@ void DownloadResCommand::execute(){
     output.pop_back();
     dio->write(output);
     dio->write("Done.\n");
+    }
 }

@@ -105,13 +105,21 @@ void Client::classifyCommand() {
 }
 
 void Client::displayResultsCommand(){
-    cout<<getData();
+    std:;string data = getData(); 
+    cout<<data;
+    if (data.compare("ERROR: the data hasn't been classified.\n") == 0) {
+        return;
+    }
     cout<<getData();
 }
 
 void Client::downloadResultsCommand(){
     CSVHandler handler;
     string output = getData();
+    if (output.compare("ERROR: the data hasn't been classified.\n") == 0) {
+        cout << output;
+        return;
+    }
     handler.writeCSV("../resources/results.txt",output);
     cout<<getData();
 }
