@@ -13,6 +13,10 @@ DownloadResCommand::DownloadResCommand(DefaultIO* dio,ServerDataManagement& mana
 
 void DownloadResCommand::execute(){
     CSVHandler handler;
+    if (manager.getOutput().compare("ERROR: the data hasn't been classified.\n") == 0) {
+        dio->write(manager.getOutput());
+        return;
+    }
     string results = manager.getOutput();
     istringstream split(results);
     string arg;

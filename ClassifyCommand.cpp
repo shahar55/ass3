@@ -15,6 +15,10 @@ ClassifyCommand::ClassifyCommand(DefaultIO* dio,ServerDataManagement& manager):C
 }
 
 void ClassifyCommand::execute(){
+    if (manager.getClassified().compare("ERROR: files hasn't been uploaded to the server.\n") == 0) {
+        dio->write(manager.getClassified());
+        return;
+    }
     classify();
     manager.getKNN().saveCurrParams();
     dio->write("classifying data complete.\n");

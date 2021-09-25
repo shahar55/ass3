@@ -17,6 +17,10 @@ ConfusionMatrixCommand::ConfusionMatrixCommand(DefaultIO* dio,ServerDataManageme
 }
 
 void ConfusionMatrixCommand::execute(){
+    if (manager.getOutput().compare("ERROR: the data hasn't been classified.\n") == 0) {
+        dio->write(manager.getOutput());
+        return;
+    }
     CSVHandler handler;
     vector<string> classes = handler.findClassesWithoutDuplicates(manager.getTest());
     map<string,int> classesMap;
