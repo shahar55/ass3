@@ -10,7 +10,7 @@ The server can handle multiple clients simultaneously.
 TCP server port: 50000
 Clients port: Provided randomly by computer
 Clients IP: 127.0.0.1
-Buffer size: 4096 byte's 
+Buffer size: 1 byte's 
 ## UML
 ![image](https://user-images.githubusercontent.com/88191199/134019688-994adeb0-a895-41ab-8221-8f1340802a4f.png)
 ![image](https://user-images.githubusercontent.com/88191199/134021475-f7fb878d-cea7-4709-b943-a2a361f0c53c.png)
