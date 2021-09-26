@@ -13,9 +13,9 @@ Clients IP: 127.0.0.1
 Buffer size: 1 byte's 
 ## UML
 ![image](https://user-images.githubusercontent.com/88191199/134019688-994adeb0-a895-41ab-8221-8f1340802a4f.png)
-![image](https://user-images.githubusercontent.com/88191199/134824188-78437aa4-31fd-4a1e-bb03-9ad751e94f6e.png)
 ![image](https://user-images.githubusercontent.com/88191199/134021475-f7fb878d-cea7-4709-b943-a2a361f0c53c.png)
 ![image](https://user-images.githubusercontent.com/88191199/134823824-8eaedb22-69e1-42f5-b506-82075312edfe.png)
+![image](https://user-images.githubusercontent.com/88191199/134824188-78437aa4-31fd-4a1e-bb03-9ad751e94f6e.png)
 ![image](https://user-images.githubusercontent.com/88191199/134023445-0b1d636f-7944-4bc6-997e-3a1fd68d000d.png)
 
 
