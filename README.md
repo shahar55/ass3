@@ -17,6 +17,8 @@ Buffer size: 1 byte's
 ![image](https://user-images.githubusercontent.com/88191199/134823824-8eaedb22-69e1-42f5-b506-82075312edfe.png)
 ![image](https://user-images.githubusercontent.com/88191199/134824188-78437aa4-31fd-4a1e-bb03-9ad751e94f6e.png)
 ![image](https://user-images.githubusercontent.com/88191199/134023445-0b1d636f-7944-4bc6-997e-3a1fd68d000d.png)
+![image](https://user-images.githubusercontent.com/88191199/134824374-a4837f11-c8b6-449d-bb61-f9f842e99124.png)
+
 
 
 ## Assingment's Requirements
