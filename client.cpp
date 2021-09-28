@@ -97,7 +97,12 @@ void Client::algorithmSettingsCommand() {
     cout<<getData();
     string params;
     getline(cin,params);
-    sendData(params.c_str());
+    if (params.length()==0) {
+        sendData("PASS");
+    }
+    else {
+        sendData(params.c_str());
+    }
 }
 
 void Client::classifyCommand() {
@@ -120,7 +125,10 @@ void Client::downloadResultsCommand(){
         cout << output;
         return;
     }
-    handler.writeCSV("../resources/results.txt",output);
+    string path;
+    cout<<"Please Enter the path to save the results.\n";
+    getline(cin,path);
+    handler.writeCSV(path,output);
     cout<<getData();
 }
 

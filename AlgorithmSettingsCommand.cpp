@@ -15,6 +15,9 @@ void AlgorithmSettingsCommand::execute(){
     string arg;
     vector<string> args;
     string newArgs = dio->read();
+    if (newArgs=="PASS") {
+        return;
+    }
     istringstream split(newArgs);
     while (getline(split,arg,' ')) {
         args.push_back(arg);
