@@ -43,7 +43,7 @@ void Client::sendData(const char* data) {
 }
 
 string Client::getData() {
-    char buffer[4096];
+    char buffer[16384];
     memset(buffer,0, sizeof(buffer));
     int expected_data_len = sizeof(buffer);
     int read_bytes = recv(sock, buffer, expected_data_len, 0);
