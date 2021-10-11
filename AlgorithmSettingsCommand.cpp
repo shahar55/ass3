@@ -27,6 +27,7 @@ void AlgorithmSettingsCommand::execute(){
 
 void AlgorithmSettingsCommand::changeParams(vector<string> params) {
     if (params.size()==0)
+        dio->write("good");
         return;
     if (params.size()!=2)
     {
@@ -43,4 +44,5 @@ void AlgorithmSettingsCommand::changeParams(vector<string> params) {
     }
     manager.changeK(atoi(params[0].c_str()));
     manager.changeDistanceMetric(params[1]);
+    dio->write("good");
 }

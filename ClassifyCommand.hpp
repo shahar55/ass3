@@ -7,8 +7,8 @@ using namespace std;
 
 class ClassifyCommand : public Command {
     private:
-        void classify();
+        static void classify(ServerDataManagement* manager);
     public:
-        ClassifyCommand(DefaultIO* dio, ServerDataManagement& manager);
+        ClassifyCommand(DefaultIO* dio, ServerDataManagement& managerGiven);
         virtual void execute();
 };

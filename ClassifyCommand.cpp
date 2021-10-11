@@ -8,6 +8,7 @@
 #include "ServerDataManagement.hpp"
 #include <sstream>
 #include <vector>
+#include <thread>
 using namespace std;
 
 ClassifyCommand::ClassifyCommand(DefaultIO* dio,ServerDataManagement& manager):Command(dio,manager){
@@ -20,17 +21,18 @@ void ClassifyCommand::execute(){
         return;
     }
     else {
-        classify();
+        thread classifyTrhead(classify, &manager);
+        classifyTrhead.detach();
         manager.getKNN().saveCurrParams();
-        dio->write("classifying data complete.\n");
+        dio->write("classifying data in progress...\n");
     }
 }
 
-void ClassifyCommand::classify(){
+void ClassifyCommand::classify(ServerDataManagement* managerGiven){
     CSVHandler c;
     dataHandler d;
-    string classified = manager.getClassified();
-    string unclassified = manager.getUnClassified();
+    string classified = (*managerGiven).getClassified();
+    string unclassified = (*managerGiven).getUnClassified();
     std::vector<std::vector<std::string>> s1 = c.fromStringToVector(classified); // turn csv file into string or.
     std::vector<std::vector<std::string>> s2 = c.fromStringToVector(unclassified); // turn csv file into stringvect vector.
     std::vector<ClassifiedFlower> c1 =  d.createClassedFlowersFromVector (s1); // create classified flowers from the string.
@@ -40,9 +42,9 @@ void ClassifyCommand::classify(){
      * for loop that find for each unFlower his type according to knn algorithem.
      * **/
     for (UnclassifiedFlower u:c2) {
-        std::vector<ClassifiedFlower> l = manager.getKNN().kthClosest(u,c1);
+        std::vector<ClassifiedFlower> l = (*managerGiven).getKNN().kthClosest(u,c1);
         std::string type = findFlowerName(l);
         types.push_back(type);
     }
-    manager.setOutput(c.fromVectorToString(types));
+    (*managerGiven).setOutput(c.fromVectorToString(types));
 }

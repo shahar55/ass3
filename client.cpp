@@ -103,6 +103,12 @@ void Client::algorithmSettingsCommand() {
     else {
         sendData(params.c_str());
     }
+    cout<<getData();
+    string reaction;
+    getline(cin,reaction);
+    if (!reaction.compare("good")) {
+        cout<<reaction;
+    }
 }
 
 void Client::classifyCommand() {
