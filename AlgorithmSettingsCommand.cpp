@@ -26,23 +26,23 @@ void AlgorithmSettingsCommand::execute(){
 }
 
 void AlgorithmSettingsCommand::changeParams(vector<string> params) {
-    if (params.size()==0)
-        dio->write("good");
-        return;
+    string errMsg="";
     if (params.size()!=2)
     {
-        dio->write("Invalid amount of parameters");
+        dio->write("Invalid amount of parameters\n");
         return;
     }
     if (atoi(params[0].c_str())<1) {
-        dio->write("Invalid value for K");
-        return;
+        errMsg+="Invalid value for K\n";
     }
     if (params[1]!="EUC" && params[1]!="MAN" && params[1]!="CHE") {
-        dio->write("Invalid value for distance metric");
+        errMsg+="Invalid value for distance metric\n";
+    }
+    if (errMsg!="") {
+        dio->write(errMsg);
         return;
     }
     manager.changeK(atoi(params[0].c_str()));
     manager.changeDistanceMetric(params[1]);
-    dio->write("good");
+    dio->write("OK");
 }
