@@ -99,6 +99,7 @@ void Client::algorithmSettingsCommand() {
     getline(cin,params);
     if (params.length()==0) {
         sendData("PASS");
+        return;
     }
     else {
         sendData(params.c_str());
